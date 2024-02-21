@@ -1,0 +1,6 @@
+@ManipulationWindowsService.API_HostAddress = http://localhost:5285
+
+GET {{ManipulationWindowsService.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
