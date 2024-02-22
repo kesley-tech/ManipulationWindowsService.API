@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "6Td4mGXhJ65ZTFk1M9lHU3qwPieJ0TqeXOy4RCrutCo=",
+  "Source": "ManipulationWindowsService.API",
+  "BasePath": "_content/ManipulationWindowsService.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Management;
+﻿using ManipulationWindowsService.API.Domain.Entities;
+using ManipulationWindowsService.API.Domain.Persistence;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.ServiceProcess;
+using System.Linq;
+using System.Collections.Frozen;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,60 +15,199 @@ namespace ManipulationWindowsService.API.Controllers
     [ApiController]
     public class WindowsServiceController : ControllerBase
     {
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IActionResult Get()
-        {
-            ManagementClass management = new ManagementClass("Win32_Process");
-            ManagementObjectCollection mCollection = management.GetInstances();
+        private WinServiceDbContext _dbContext;
 
-            foreach (ManagementObject process in mCollection)
+        public WindowsServiceController(WinServiceDbContext dbContext) 
+        {
+            this._dbContext = dbContext;
+        }
+
+        [HttpGet("GetLocal")]
+        public IActionResult GetLocal()
+        {
+            try
             {
-                //ListViewItem novoListViewItem = new ListViewItem();
+                var userRequested = string.Concat(HttpContext.Connection.RemoteIpAddress,":",HttpContext.Connection.RemotePort);
 
-                //novoListViewItem.Text = (process["ProcessId"].ToString());
-                //novoListViewItem.SubItems.Add((string)process["Name"]);
-                //novoListViewItem.SubItems.Add((string)process["ExecutablePath"]);
+                ServiceController[] dataList = ServiceController.GetServices();
 
-                //try
-                //{
-                //    FileVersionInfo info = FileVersionInfo.GetVersionInfo((string)process["ExecutablePath"]);
-                //    novoListViewItem.SubItems.Add(info.FileDescription);
-                //}
-                //catch
-                //{
-                //    novoListViewItem.SubItems.Add("Não Disponível");
-                //}
+                var serviceListDTO = new List<WinService>();
+                foreach (var data in dataList)
+                {
+                    var currentService = new WinService();
+                    currentService.Update(data.ServiceName,
+                                          data.DisplayName,
+                                          data.Status,
+                                          data.StartType,
+                                          "");
 
-                //lvServicosAtivos.Items.Add(novoListViewItem);
+                    serviceListDTO.Add(currentService);
+                }
+
+                return serviceListDTO.Any() ? Ok(serviceListDTO) : NotFound();
             }
-
-            return Ok(mCollection);
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message,"\n",ex.InnerException));
+            }
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetLocalByName/{name}")]
+        public IActionResult GetLocal(string name)
         {
-            return "value";
+            try
+            {
+                WinService serviceDTO = _dbContext.WinServiceList.SingleOrDefault(service => service.Name == name);
+                return serviceDTO != null ? Ok(serviceDTO) : NotFound();
+            }
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message, "\n", ex.InnerException));
+            }
         }
 
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetBase")]
+        public IActionResult GetBase()
         {
+            try
+            {
+                List<WinService> serviceListDTO = _dbContext.WinServiceList.Where(service => !service.IsDeleted).ToList();
+                return serviceListDTO.Any() ? Ok(serviceListDTO) : NotFound();
+            }
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message, "\n", ex.InnerException));
+            }
         }
 
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("GetBaseById/{id}")]
+        public IActionResult GetBase(Guid id)
         {
+            try
+            {
+                WinService serviceDTO = _dbContext.WinServiceList.SingleOrDefault(service => service.Id == id);
+                return serviceDTO != null ? Ok(serviceDTO) : NotFound();
+            }
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message, "\n", ex.InnerException));
+            }
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("Insert")]
+        public IActionResult Insert(WinService inputModel)
         {
+            try
+            {
+                var userRequested = string.Concat(HttpContext.Connection.RemoteIpAddress,":",HttpContext.Connection.RemotePort);
+
+                _dbContext.WinServiceList.Add(inputModel);
+
+                return CreatedAtAction(nameof(GetBase), new { id = inputModel.Id }, inputModel);
+            }
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message, "\n", ex.InnerException));
+            }
+        }
+
+        [HttpPut("Update/{id}")]
+        public IActionResult Update(Guid id, WinService inputModel)
+        {
+            try
+            {
+                var userRequested = string.Concat(HttpContext.Connection.RemoteIpAddress, ":", HttpContext.Connection.RemotePort);
+                
+                WinService serviceDTO = _dbContext.WinServiceList.SingleOrDefault(service => service.Id == id);
+
+                if (serviceDTO is null)
+                    return NotFound();
+
+                serviceDTO.Update(inputModel.Name, inputModel.Description, inputModel.Status, inputModel.StartupType, inputModel.LogOnAs);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message, "\n", ex.InnerException));
+            }
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                var userRequested = string.Concat(HttpContext.Connection.RemoteIpAddress, ":", HttpContext.Connection.RemotePort);
+
+                WinService serviceDTO = _dbContext.WinServiceList.SingleOrDefault(service => service.Id == id);
+
+                if (serviceDTO is null)
+                    return NotFound();
+
+                serviceDTO.Delete();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message, "\n", ex.InnerException));
+            }
+        }
+
+        [HttpPost("SaveLocalToBase")]
+        public IActionResult SaveLocalToBase()
+        {
+            try
+            {
+                OkObjectResult objectResult = (OkObjectResult)GetLocal();
+                List<WinService>? serviceLocalList = (List<WinService>)objectResult.Value;
+                InsertExceptWinService(serviceLocalList);
+                UpdateDiffWinService(serviceLocalList);
+                DeleteDiffWinService(serviceLocalList);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return Problem(string.Concat(ex.Message, "\n", ex.InnerException));
+            }
+        }
+
+        private void DeleteDiffWinService(List<WinService>? serviceLocalList)
+        {
+            List<WinService> oldData = (from serviceBase in _dbContext.WinServiceList
+                                        where !serviceLocalList.Any(x => x.Name.Contains(serviceBase.Name))
+                                        select serviceBase).ToList();
+
+            foreach (WinService old in oldData)
+                Delete(old.Id);
+        }
+
+        private void UpdateDiffWinService(List<WinService>? serviceLocalList)
+        {
+            List<WinService> diffData = (from localService in serviceLocalList
+                                        join baseService in _dbContext.WinServiceList on localService.Name equals baseService.Name
+                                        where baseService.Name != localService.Name ||
+                                              baseService.Description != localService.Description ||
+                                              baseService.Status != localService.Status ||
+                                              baseService.StartupType != localService.StartupType ||
+                                              baseService.LogOnAs != localService.LogOnAs ||
+                                              baseService.IsDeleted != localService.IsDeleted 
+                                         select localService).ToList();
+             
+            foreach (WinService diff in diffData)
+                Update(diff.Id, diff);
+        }
+
+        private void InsertExceptWinService(List<WinService>? serviceLocalList)
+        {
+            List<WinService> newData = (from serviceLocal in serviceLocalList
+                                        where !_dbContext.WinServiceList.Any(x => x.Name == serviceLocal.Name)
+                                        select serviceLocal).ToList();
+
+            foreach (WinService data in newData)
+                Insert(data);
         }
     }
 }

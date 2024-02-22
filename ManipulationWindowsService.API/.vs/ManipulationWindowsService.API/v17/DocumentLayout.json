@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{668AF181-94BB-4A4B-B16C-4CE794F3A9AD}|ManipulationWindowsService.API.csproj|d:\\personalprojects\\manipulationwindowsservice\\manipulationwindowsservice.api\\manipulationwindowsservice.api\\controllers\\windowsservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{668AF181-94BB-4A4B-B16C-4CE794F3A9AD}|ManipulationWindowsService.API.csproj|solutionrelative:controllers\\windowsservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{668AF181-94BB-4A4B-B16C-4CE794F3A9AD}|ManipulationWindowsService.API.csproj|d:\\personalprojects\\manipulationwindowsservice\\manipulationwindowsservice.api\\manipulationwindowsservice.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{668AF181-94BB-4A4B-B16C-4CE794F3A9AD}|ManipulationWindowsService.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,29 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\PersonalProjects\\ManipulationWindowsService\\ManipulationWindowsService.API\\ManipulationWindowsService.API\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\PersonalProjects\\ManipulationWindowsService\\ManipulationWindowsService.API\\ManipulationWindowsService.API\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-21T23:25:30.524Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,9 +49,9 @@
               "RelativeDocumentMoniker": "Controllers\\WindowsServiceController.cs",
               "ToolTip": "D:\\PersonalProjects\\ManipulationWindowsService\\ManipulationWindowsService.API\\ManipulationWindowsService.API\\Controllers\\WindowsServiceController.cs",
               "RelativeToolTip": "Controllers\\WindowsServiceController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAABMAAAA",
+              "ViewState": "AQIAAJsAAAAAAAAAAAAgwKAAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-21T03:13:38.494Z",
+              "WhenOpened": "2024-02-21T22:59:29.003Z",
               "EditorCaption": ""
             }
           ]
