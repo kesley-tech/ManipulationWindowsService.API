@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ManipulationWindowsService.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6289fc24785bb9e7ba61aa83d3acd0eb8893204")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a1988a232089faff086d1e84103a58a32224ad3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ManipulationWindowsService.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ManipulationWindowsService.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

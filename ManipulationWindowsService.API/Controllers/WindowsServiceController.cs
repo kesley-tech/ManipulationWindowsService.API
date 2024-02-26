@@ -1,11 +1,7 @@
-﻿using ManipulationWindowsService.API.Domain.Entities;
-using ManipulationWindowsService.API.Domain.Persistence;
+﻿using ManipulationWindowsService.API.Domain.Persistence;
+using ManipulationWindowsService.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.ServiceProcess;
-using System.Linq;
-using System.Collections.Frozen;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,11 +31,11 @@ namespace ManipulationWindowsService.API.Controllers
                 foreach (var data in dataList)
                 {
                     var currentService = new WinService();
-                    currentService.Update(data.ServiceName,
-                                          data.DisplayName,
-                                          data.Status,
-                                          data.StartType,
-                                          "");
+                    //currentService.Update(data.ServiceName,
+                    //                      data.DisplayName,
+                    //                      data.Status,
+                    //                      data.StartType,
+                    //                      "");
 
                     serviceListDTO.Add(currentService);
                 }
@@ -101,7 +97,7 @@ namespace ManipulationWindowsService.API.Controllers
             {
                 var userRequested = string.Concat(HttpContext.Connection.RemoteIpAddress,":",HttpContext.Connection.RemotePort);
 
-                _dbContext.WinServiceList.Add(inputModel);
+                //_dbContext.WinServiceList.Add(inputModel);
 
                 return CreatedAtAction(nameof(GetBase), new { id = inputModel.Id }, inputModel);
             }
@@ -123,7 +119,7 @@ namespace ManipulationWindowsService.API.Controllers
                 if (serviceDTO is null)
                     return NotFound();
 
-                serviceDTO.Update(inputModel.Name, inputModel.Description, inputModel.Status, inputModel.StartupType, inputModel.LogOnAs);
+                //serviceDTO.Update(inputModel.Name, inputModel.Description, inputModel.Status, inputModel.StartupType, inputModel.LogOnAs);
 
                 return NoContent();
             }
@@ -145,7 +141,7 @@ namespace ManipulationWindowsService.API.Controllers
                 if (serviceDTO is null)
                     return NotFound();
 
-                serviceDTO.Delete();
+                //serviceDTO.Delete();
 
                 return NoContent();
             }
@@ -166,7 +162,7 @@ namespace ManipulationWindowsService.API.Controllers
                 UpdateDiffWinService(serviceLocalList);
                 DeleteDiffWinService(serviceLocalList);
 
-                return NoContent();
+                return Ok("Dados registrados com sucesso!");
             }
             catch (Exception ex)
             {

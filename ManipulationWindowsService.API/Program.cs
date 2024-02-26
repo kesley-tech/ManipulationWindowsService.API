@@ -1,4 +1,5 @@
 using ManipulationWindowsService.API.Domain.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
@@ -7,7 +8,7 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        builder.Services.AddSingleton<WinServiceDbContext>();
+        builder.Services.AddDbContext<WinServiceDbContext>(context => context.UseInMemoryDatabase("Development"));
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

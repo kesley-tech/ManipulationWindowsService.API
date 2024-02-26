@@ -1,0 +1,13 @@
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\bin\Debug\net7.0\ManipulationWindowsService.Domain.deps.json
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\bin\Debug\net7.0\ManipulationWindowsService.Domain.dll
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\bin\Debug\net7.0\ManipulationWindowsService.Domain.pdb
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.csproj.AssemblyReference.cache
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.AssemblyInfoInputs.cache
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.AssemblyInfo.cs
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.csproj.CoreCompileInputs.cache
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.sourcelink.json
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.dll
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\refint\ManipulationWindowsService.Domain.dll
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ManipulationWindowsService.Domain.pdb
+D:\PersonalProjects\ManipulationWindowsService\ManipulationWindowsService.API\Domain\obj\Debug\net7.0\ref\ManipulationWindowsService.Domain.dll

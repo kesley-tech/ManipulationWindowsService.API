@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "Onc5dLGLcsB2HdbVeCjD5FNTfYzd6gYLHoMYohM6WhaG+d5OM7RPySaNUspKhDyFUNyif0laOJsn68Ky6/nKLA==",
+  "success": true,
+  "projectFilePath": "D:\\PersonalProjects\\ManipulationWindowsService\\ManipulationWindowsService.API\\Domain\\ManipulationWindowsService.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sqo-111\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
+    "C:\\Users\\sqo-111\\.nuget\\packages\\system.diagnostics.eventlog\\7.0.0\\system.diagnostics.eventlog.7.0.0.nupkg.sha512",
+    "C:\\Users\\sqo-111\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512",
+    "C:\\Users\\sqo-111\\.nuget\\packages\\system.serviceprocess.servicecontroller\\7.0.1\\system.serviceprocess.servicecontroller.7.0.1.nupkg.sha512",
+    "C:\\Users\\sqo-111\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\sqo-111\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\sqo-111\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+  ],
+  "logs": []
+}
